@@ -31,16 +31,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const pixel = ctx.getImageData(x, y, 1, 1);
-    if (pixel.data[3] > 0) {
-      pixel.data[3] = Math.max(pixel.data[3] - 51, 0); // 51 is 20% of 255
-      ctx.putImageData(pixel, x, y);
-    }
+    eraseCircle(ctx, x, y, 20); // 지우는 영역을 원형으로 크게 설정
 
     if (isCanvasCleared(ctx, canvas)) {
       messageDiv.style.display = 'block';
     }
   });
+
+  function eraseCircle(context, x, y, radius) {
+    context.globalCompositeOperation = 'destination-out';
+    context.beginPath();
+    context.arc(x, y, radius, 0, Math.PI * 2, false);
+    context.fill();
+    context.globalCompositeOperation = 'source-over';
+  }
 
   function drawMessageBackground(message) {
     ctx.globalCompositeOperation = 'destination-over';
