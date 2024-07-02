@@ -41,16 +41,17 @@ document.addEventListener('DOMContentLoaded', function() {
   canvas.addEventListener('touchmove', function(e) {
     e.preventDefault(); // 터치 시 화면 스크롤 방지
     const rect = canvas.getBoundingClientRect();
-    const touch = e.touches[0];
+    const touch = e.touches[0]; // 첫 번째 터치 포인트 가져오기
     const x = touch.clientX - rect.left;
     const y = touch.clientY - rect.top;
 
-    eraseCircle(ctx, x, y, 10); // 지우는 영역을 원형으로 크게 설정
+    eraseCircle(ctx, x, y, 10); // 지우는 영역을 원형으로 설정, 반지름 10
 
     if (isCanvasCleared(ctx, canvas)) {
-      messageDiv.style.display = 'block';
+        messageDiv.style.display = 'block';
     }
-  });
+});
+
 
  function eraseCircle(context, x, y, radius) {
     const percentToClear = 0.1; // 10% 지우기
