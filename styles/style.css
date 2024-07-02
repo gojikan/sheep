@@ -8,25 +8,21 @@ body {
 }
 
 #canvas {
-  max-width: 100%; /* 최대 너비 설정 */
-  max-height: 80vh; /* 최대 높이 설정 (예시로 80vh로 설정했습니다) */
-  width: auto; /* 너비 자동 조정 */
-  height: auto; /* 높이 자동 조정 */
+  width: 100vw; /* 화면 너비에 맞게 설정 */
+  height: 100vh; /* 화면 높이에 맞게 설정 */
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   z-index: 1;
 }
 
 #message {
   position: absolute;
-  top: 20%;
-  left: 20%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 10px;
- 
-  z-index: 0; /* message의 z-index를 1로 설정하여 canvas 위에 위치 */
+  z-index: 2; /* message의 z-index를 2로 설정하여 canvas 위에 위치 */
 }
