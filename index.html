@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>양 이미지와 텍스트 효과</title>
+    <title>Interactive Sheep Image</title>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <div class="container">
-        <img src="images/sheep.jpg" alt="양 이미지" class="sheep-image" id="sheep">
+        <div class="image-container">
+            <img src="images/sheep.jpg" id="sheep-image" alt="Sheep Image">
+            <div class="highlight-circle" id="highlight"></div>
+        </div>
         <div class="text-container">
-            <p id="text1" class="random-text">텍스트 1</p>
-            <p id="text2" class="random-text">텍스트 2</p>
-            <p id="text3" class="random-text">텍스트 3</p>
-            <p id="text4" class="random-text">텍스트 4</p>
-            <p id="text5" class="random-text">텍스트 5</p>
-            <p id="text6" class="random-text">텍스트 6</p>
-            <p id="text7" class="random-text">텍스트 7</p>
-            <p id="text8" class="random-text">텍스트 8</p>
+            <p id="random-text">Random Text</p>
         </div>
     </div>
     <script src="scripts/main.js"></script>
