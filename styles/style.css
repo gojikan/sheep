@@ -9,37 +9,41 @@ body {
 
 .container {
     position: relative;
-}
-
-.sheep-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1; /* 이미지는 텍스트보다 뒤에 위치 */
-    pointer-events: none; /* 이미지 위에서 이벤트가 발생하지 않도록 */
-}
-
-.text-container {
-    position: relative;
-    z-index: 0; /* 텍스트는 이미지 뒤에 위치 */
     text-align: center;
 }
 
-.random-text {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px 20px;
-    border-radius: 10px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0; /* 초기에는 투명하게 설정 */
-    pointer-events: none; /* 텍스트는 마우스 이벤트를 가로막지 않도록 */
+.image-container {
+    position: relative;
+    display: inline-block;
 }
 
-.random-text.active {
-    opacity: 1; /* 활성화된 텍스트만 보이도록 함 */
+#sheep-image {
+    z-index: 1;
 }
+
+.highlight-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    display: none; /* Initially hidden */
+}
+
+.text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: none; /* Initially hidden */
+}
+
+#random-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
