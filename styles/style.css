@@ -24,5 +24,17 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 10px;
-  z-index: 0; 
+  z-index: 0; /* message의 z-index를 2로 설정하여 canvas 위에 위치 */
+}
+
+/* 모바일 장치에서 사용할 추가 CSS */
+@media (max-width: 768px) { /* 예시로 768px 이하의 모바일 장치를 타겟팅 */
+  #message {
+    width: 80%; /* 메시지 요소의 너비를 설정 */
+    max-width: 300px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    left: 0; /* 왼쪽에 붙지 않도록 설정 */
+    right: 0; /* 오른쪽에 붙지 않도록 설정 */
+    transform: translate(0, -50%); /* 모바일 장치에서 요소 중앙 정렬 */
+  }
 }
