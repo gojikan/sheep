@@ -11,7 +11,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 0; /* canvas의 z-index를 0으로 설정 */
+  z-index: 1; /* canvas의 z-index를 0으로 설정 */
 }
 
 #message {
@@ -22,6 +22,6 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 10px;
-  display: none; /* 초기에는 숨김 */
-  z-index: 1; /* message의 z-index를 1로 설정하여 canvas 위에 위치 */
+/*   display: none; 초기에는 숨김 */
+  z-index: 0; /* message의 z-index를 1로 설정하여 canvas 위에 위치 */
 }
