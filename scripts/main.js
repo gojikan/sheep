@@ -42,25 +42,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 
-function eraseCircle(context, x, y, radius) {
-    const percentToClear = 0.2; // 20% 투명도를 낮추기
-
-    // 클리핑 영역 설정
-    context.save();
+  function eraseCircle(context, x, y, radius) {
+    context.globalCompositeOperation = 'destination-out';
     context.beginPath();
     context.arc(x, y, radius, 0, Math.PI * 2, false);
-    context.clip();
-
-    // 원형 영역 내에서 투명도를 조절하여 지우기
-    for (let i = 0; i <= radius; i++) {
-        context.globalAlpha = Math.max(0, context.globalAlpha - percentToClear / radius);
-        context.beginPath();
-        context.arc(x, y, radius - i, 0, Math.PI * 2, false);
-        context.fill();
-    }
-
-    context.restore();
-}
+    context.fill();
+    context.globalCompositeOperation = 'source-over';
+  }
 
 
   function drawMessageBackground(message) {
@@ -71,6 +59,7 @@ function eraseCircle(context, x, y, radius) {
     ctx.textBaseline = 'middle';
     wrapText(ctx, message, canvas.width / 2, canvas.height / 2, canvas.width - 20, 30);
     ctx.globalCompositeOperation = 'source-over';
+    context.globalCompositeOperation = 'destination-out';
   }
 
   function wrapText(context, text, x, y, maxWidth, lineHeight) {
