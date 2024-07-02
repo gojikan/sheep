@@ -23,7 +23,7 @@ body {
   color: white;
   padding: 10px;
   text-align: center; /* 텍스트 가운데 정렬 */
-  display: block; /* 초기에는 보이게 설정 */
+  /*  display: block;초기에는 보이게 설정 */
   z-index: -1; /* canvas 뒤에 위치하도록 설정 */
   
   /* 화면 중앙 정렬 */
@@ -32,15 +32,5 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* 모바일 장치에서 사용할 추가 CSS */
-@media (max-width: 768px) { /* 예시로 768px 이하의 모바일 장치를 타겟팅 */
-  #message {
-    width: 80%; /* 메시지 요소의 너비를 설정 */
-    max-width: 300px; /* 최대 너비 설정 */
-    margin: 0 auto; /* 가운데 정렬 */
-    left: 0; /* 왼쪽에 붙지 않도록 설정 */
-    right: 0; /* 오른쪽에 붙지 않도록 설정 */
-    top: 20%; /* 화면 상단에서 20% 위치 */
-    transform: none; /* transform 초기화 */
-  }
+
 }
