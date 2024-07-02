@@ -38,6 +38,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  canvas.addEventListener('touchmove', function(e) {
+    e.preventDefault(); // 터치 시 화면 스크롤 방지
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+
+    eraseCircle(ctx, x, y, 20); // 지우는 영역을 원형으로 크게 설정
+
+    if (isCanvasCleared(ctx, canvas)) {
+      messageDiv.style.display = 'block';
+    }
+  });
+
   function eraseCircle(context, x, y, radius) {
     context.globalCompositeOperation = 'destination-out';
     context.beginPath();
