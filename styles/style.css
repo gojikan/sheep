@@ -5,6 +5,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
+    overflow: hidden; /* 모바일에서 스크롤 제어 */
 }
 
 .container {
@@ -15,22 +16,11 @@ body {
 .image-container {
     position: relative;
     display: inline-block;
+    overflow: hidden; /* 하이라이트 효과가 이미지를 벗어나지 않도록 */
 }
 
 #sheep-image {
-    z-index: 1;
-}
-
-.highlight-circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    display: none; /* Initially hidden */
+    transition: opacity 0.3s ease; /* opacity 변경 부드럽게 */
 }
 
 .text-container {
@@ -39,11 +29,10 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    display: none; /* Initially hidden */
+    display: none; /* 초기에 숨김 */
 }
 
 #random-text {
     font-size: 24px;
     font-weight: bold;
 }
-
