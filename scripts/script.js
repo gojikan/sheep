@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedText = texts[Math.floor(Math.random() * texts.length)];
 
     const sheepImage = new Image();
-    sheepImage.src = 'images/sheep.jpg';
+    sheepImage.src = '../images/sheep.jpg';
     sheepImage.onload = () => {
         canvas.width = sheepImage.width;
         canvas.height = sheepImage.height;
