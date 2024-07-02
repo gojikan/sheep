@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const x = touch.clientX - rect.left;
     const y = touch.clientY - rect.top;
 
-    eraseCircle(ctx, x, y, 20); // 지우는 영역을 원형으로 크게 설정
+    eraseCircle(ctx, x, y, 10); // 지우는 영역을 원형으로 크게 설정
 
     if (isCanvasCleared(ctx, canvas)) {
       messageDiv.style.display = 'block';
