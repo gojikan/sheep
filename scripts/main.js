@@ -1,41 +1,50 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const sheepImage = document.getElementById('sheep-image');
+    const canvas = document.getElementById('sheep-canvas');
     const textContainer = document.querySelector('.text-container');
     const randomText = document.getElementById('random-text');
-    const imageContainer = document.querySelector('.image-container');
+    const ctx = canvas.getContext('2d');
+    let sheepImage;
 
-    // 마우스 위치에서 이미지 중심까지의 거리를 계산하는 함수
-    function calculateDistance(x1, y1, x2, y2) {
-        return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+    // 이미지 로드 후 초기화
+    function initialize() {
+        sheepImage = new Image();
+        sheepImage.onload = function() {
+            canvas.width = sheepImage.width;
+            canvas.height = sheepImage.height;
+            ctx.drawImage(sheepImage, 0, 0);
+        };
+        sheepImage.src = 'images/sheep.jpg';
+
+        canvas.addEventListener('mousemove', handleMouseMove);
+        canvas.addEventListener('mouseout', handleMouseOut);
+
+        // 텍스트 랜덤으로 업데이트
+        updateRandomText();
     }
 
-    // 이미지 컨테이너에서의 마우스 이동 이벤트
-    imageContainer.addEventListener('mousemove', function(e) {
-        const imageRect = sheepImage.getBoundingClientRect();
-        const mouseX = e.clientX - imageRect.left; // 이미지 내 마우스 X 위치
-        const mouseY = e.clientY - imageRect.top;  // 이미지 내 마우스 Y 위치
-        const imageCenterX = imageRect.width / 2;   // 이미지 중심 X
-        const imageCenterY = imageRect.height / 2;  // 이미지 중심 Y
+    // 마우스 이동 처리 함수
+    function handleMouseMove(event) {
+        const mouseX = event.offsetX;
+        const mouseY = event.offsetY;
 
-        // 마우스와 이미지 중심 사이의 거리 계산
-        const distance = calculateDistance(imageCenterX, imageCenterY, mouseX, mouseY);
-        // 최대 거리 계산 (투명도 0이 되는 거리)
-        const maxDistance = imageRect.width / 2 + 5;
+        // 특정 영역의 투명도 조절
+        const radius = 5; // 마우스 올린 위치에서의 투명 반경
+        const imageData = ctx.getImageData(mouseX - radius, mouseY - radius, radius * 2, radius * 2);
+        const pixels = imageData.data;
 
-        // 거리에 따른 투명도 계산
-        let opacity = 1 - (distance / maxDistance) * 0.1;
-        opacity = Math.max(opacity, 0); // 최소 투명도 0으로 설정
+        for (let i = 3; i < pixels.length; i += 4) {
+            pixels[i] *= 0.9; // alpha 값을 10% 감소 (90% 투명)
+        }
 
-        // 양 이미지에 투명도 적용
-        sheepImage.style.opacity = opacity.toFixed(1); // 소수점 첫째 자리까지 반올림
-    });
+        ctx.putImageData(imageData, mouseX - radius, mouseY - radius);
+    }
 
-    // 마우스가 이미지 밖으로 나갈 경우 투명도 초기화
-    imageContainer.addEventListener('mouseout', function() {
-        sheepImage.style.opacity = 1; // 투명도 초기화
-    });
+    // 마우스 이벤트 리셋 함수
+    function handleMouseOut() {
+        ctx.drawImage(sheepImage, 0, 0);
+    }
 
-    // 텍스트 랜덤으로 업데이트하는 함수 (이전 예제와 동일)
+    // 텍스트 랜덤으로 업데이트하는 함수
     function updateRandomText() {
         const texts = [
             '텍스트 1',
@@ -51,14 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
         randomText.textContent = texts[randomIndex];
     }
 
-    // 양 이미지에 마우스 오버 이벤트 (이전 예제와 동일)
-    sheepImage.addEventListener('mouseover', function() {
-        textContainer.style.display = 'block'; // 텍스트 컨테이너 표시
-        updateRandomText(); // 텍스트 업데이트
-    });
+    // 랜덤 정수 생성 함수
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
 
-    // 양 이미지에서 마우스 아웃 이벤트 (이전 예제와 동일)
-    sheepImage.addEventListener('mouseout', function() {
-        textContainer.style.display = 'none'; // 텍스트 컨테이너 숨김
-    });
+    // 초기화 함수 호출
+    initialize();
 });
