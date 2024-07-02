@@ -13,14 +13,10 @@ body {
     text-align: center;
 }
 
-.image-container {
-    position: relative;
-    display: inline-block;
-    overflow: hidden; /* 하이라이트 효과가 이미지를 벗어나지 않도록 */
-}
-
-#sheep-image {
-    transition: opacity 0.3s ease; /* opacity 변경 부드럽게 */
+#sheep-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .text-container {
