@@ -52,13 +52,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  function eraseCircle(context, x, y, radius) {
-    context.globalCompositeOperation = 'destination-out';
+ function eraseCircle(context, x, y, radius) {
+    const percentToClear = 0.1; // 10% 지우기
+
+    // 원형 영역 내의 모든 픽셀의 투명도를 낮춰 일정 비율만큼 지움
+    context.save();
     context.beginPath();
     context.arc(x, y, radius, 0, Math.PI * 2, false);
-    context.fill();
-    context.globalCompositeOperation = 'source-over';
-  }
+    context.clip(); // 클리핑 영역 설정
+
+    // 투명도를 조절하여 일정 비율만큼만 지우기
+    context.globalAlpha = 1 - percentToClear;
+    context.fillStyle = 'rgba(255, 255, 255, 1)'; // 지울 색상과 투명도 설정
+    context.fillRect(0, 0, canvas.width, canvas.height); // 전체 캔버스에 색상을 씌움
+
+    context.restore();
+}
 
   function drawMessageBackground(message) {
     ctx.globalCompositeOperation = 'destination-over';
