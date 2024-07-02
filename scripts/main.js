@@ -28,20 +28,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const mouseY = event.offsetY;
 
         // 특정 영역의 투명도 조절
-        const radius = 5; // 마우스 올린 위치에서의 투명 반경
-        const imageData = ctx.getImageData(mouseX - radius, mouseY - radius, radius * 2, radius * 2);
-        const pixels = imageData.data;
+        const radius = 10; // 마우스 올린 위치에서의 투명 반경
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 클리어
+        ctx.globalAlpha = 1; // 초기 투명도
 
-        for (let i = 3; i < pixels.length; i += 4) {
-            pixels[i] *= 0.9; // alpha 값을 10% 감소 (90% 투명)
-        }
-
-        ctx.putImageData(imageData, mouseX - radius, mouseY - radius);
+        // 마우스 위치 주변의 이미지 그리기
+        ctx.drawImage(sheepImage, 0, 0);
+        ctx.beginPath();
+        ctx.arc(mouseX, mouseY, radius, 0, 2 * Math.PI);
+        ctx.clip(); // 클리핑 영역 설정
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // 클리핑 영역 지우기
+        ctx.globalAlpha = 0.9; // 클리핑 영역 투명도 설정
+        ctx.drawImage(sheepImage, 0, 0); // 클리핑 영역에 이미지 그리기
+        ctx.globalAlpha = 1; // 투명도 원래대로 복원
     }
 
     // 마우스 이벤트 리셋 함수
     function handleMouseOut() {
-        ctx.drawImage(sheepImage, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 클리어
+        ctx.drawImage(sheepImage, 0, 0); // 원래 이미지 그리기
     }
 
     // 텍스트 랜덤으로 업데이트하는 함수
