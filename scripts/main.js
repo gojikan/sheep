@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const x = touch.clientX - rect.left;
     const y = touch.clientY - rect.top;
 
-    eraseCircle(ctx, x, y, 10); // 지우는 영역을 원형으로 설정, 반지름 10
+    eraseCircle(ctx, x, y, 7); // 지우는 영역을 원형으로 설정, 반지름 10
 
     if (isCanvasCleared(ctx, canvas)) {
         messageDiv.style.display = 'block';
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
  function eraseCircle(context, x, y, radius) {
-    const percentToClear = 0.1; // 10% 지우기
+    const percentToClear = 0.05; // 10% 지우기
 
     // 원형 영역 내의 모든 픽셀의 투명도를 낮춰 일정 비율만큼 지움
     context.save();
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 투명도를 조절하여 일정 비율만큼만 지우기
     context.globalAlpha = 1 - percentToClear;
-    context.fillStyle = 'rgba(255, 255, 255, 1)'; // 지울 색상과 투명도 설정
+    context.fillStyle = 'rgba(255, 255, 255, 0.05)'; // 지울 색상과 투명도 설정
     context.fillRect(0, 0, canvas.width, canvas.height); // 전체 캔버스에 색상을 씌움
 
     context.restore();
