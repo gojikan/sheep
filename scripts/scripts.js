@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
       drawMessageBackground(randomMessage);
     };
   
-    canvas.addEventListener('touchstart', function(e) {
+    canvas.addEventListener('touchmove', function(e) {
         e.preventDefault(); // 터치 시 기본 동작(스크롤) 막기
           
         const rect = canvas.getBoundingClientRect();
