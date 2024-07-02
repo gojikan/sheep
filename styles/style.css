@@ -8,8 +8,8 @@ body {
 }
 
 #canvas {
-  width: 100vw; /* 화면 너비에 맞게 설정 */
-  height: 100vh; /* 화면 높이에 맞게 설정 */
+  width: 100%; /* 화면 너비에 맞게 설정 */
+  height: 100%; /* 화면 높이에 맞게 설정 */
   position: absolute;
   top: 0;
   left: 0;
