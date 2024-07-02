@@ -1,16 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scratch Off Sheep</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <title>Sheep Scratch</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      display: none; /* 초기에는 숨김 */
+      z-index: -1; /* canvas 뒤에 위치하도록 설정 */
+    }
+  </style>
 </head>
 <body>
-  <div id="container">
-    <canvas id="canvas"></canvas>
-    <div id="message"></div>
-  </div>
-  <script src="scripts/main.js"></script>
+  <canvas id="canvas"></canvas>
+  <div id="message"></div>
+  <script src="main.js"></script>
 </body>
 </html>
