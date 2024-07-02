@@ -28,34 +28,33 @@ document.addEventListener('DOMContentLoaded', function() {
       drawMessageBackground(randomMessage);
     };
   
-    canvas.addEventListener('mousemove', function(e) {
-        e.preventDefault(); // 터치 시 화면 스크롤 방지
-      
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-  
-      eraseCircle(ctx, x, y, 10, 0.04); // 지우는 영역을 원형으로 크게 설정
-
-    // Remove previous mee elements after 1 second
-    const previousMees = document.querySelectorAll('.mee');
-    previousMees.forEach(element => {
-      element.style.animation = ''; // Disable animation to remove element smoothly
-      setTimeout(() => element.remove(), 1000); // Remove element after 1 second
+    canvas.addEventListener('touchstart', function(e) {
+        e.preventDefault(); // 터치 시 기본 동작(스크롤) 막기
+          
+        const rect = canvas.getBoundingClientRect();
+        const x = e.touches[0].clientX - rect.left;
+        const y = e.touches[0].clientY - rect.top;
+    
+        eraseCircle(ctx, x, y, 10, 0.04); // 지우는 영역을 원형으로 크게 설정
+    
+        // Remove previous mee elements after 1 second
+        const previousMees = document.querySelectorAll('.mee');
+        previousMees.forEach(element => {
+          element.style.animation = ''; // Disable animation to remove element smoothly
+          setTimeout(() => element.remove(), 1000); // Remove element after 1 second
+        });
+    
+        // Create new mee element
+        const mee = document.createElement('div');
+        mee.classList.add('mee');
+        mee.textContent = '메에~';
+        mee.style.position = 'absolute';
+        mee.style.top = `${y}px`;
+        mee.style.left = `${x}px`;
+    
+        document.body.appendChild(mee);
     });
-
-    // Create new mee element
-    const mee = document.createElement('div');
-    mee.classList.add('mee');
-    mee.textContent = '메에~';
-    mee.style.position = 'absolute';
-    mee.style.top = `${y}px`;
-    mee.style.left = `${x}px`;
-
-
-    document.body.appendChild(mee);
-   
-    });
+    
   
   
     function eraseCircle(context, x, y, radius, alpha) {
