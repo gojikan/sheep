@@ -4,9 +4,12 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  position: relative; /* body를 relative로 설정하여 absolute가 정상 작동하도록 */
 }
 
 #canvas {
+  width: 100%; /* 화면 너비에 맞게 설정 */
+  height: 100%; /* 화면 높이에 맞게 설정 */
   position: absolute;
   top: 0;
   left: 0;
@@ -14,12 +17,30 @@ body {
 
 #message {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 80%; /* 메시지 요소의 너비를 설정 */
+  max-width: 300px; /* 최대 너비 설정 */
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   padding: 10px;
- 
+  text-align: center; /* 텍스트 가운데 정렬 */
+  display: block; /* 초기에는 보이게 설정 */
   z-index: -1; /* canvas 뒤에 위치하도록 설정 */
+  
+  /* 화면 중앙 정렬 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 모바일 장치에서 사용할 추가 CSS */
+@media (max-width: 768px) { /* 예시로 768px 이하의 모바일 장치를 타겟팅 */
+  #message {
+    width: 80%; /* 메시지 요소의 너비를 설정 */
+    max-width: 300px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    left: 0; /* 왼쪽에 붙지 않도록 설정 */
+    right: 0; /* 오른쪽에 붙지 않도록 설정 */
+    top: 20%; /* 화면 상단에서 20% 위치 */
+    transform: none; /* transform 초기화 */
+  }
 }
