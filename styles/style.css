@@ -25,7 +25,7 @@ body {
   padding: 10px;
   text-align: center; /* 텍스트 가운데 정렬 */
   display: none; /* 초기에는 숨김 */
-  z-index: 2; /* message의 z-index를 2로 설정하여 canvas 위에 위치 */
+  z-index: 0; /* message의 z-index를 2로 설정하여 canvas 위에 위치 */
   
   /* 화면 중앙 정렬 */
   top: 50%;
